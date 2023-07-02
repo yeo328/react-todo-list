@@ -2,17 +2,29 @@ import './App.css';
 import { Component } from 'react';
 import Todo from './components/Todo.js'
 import InputComp from './components/InputComp';
+import axios from 'axios'; // axios 라이브러리 import
+
 
 class App extends Component{
   constructor(props){
     super(props)
     this.state={
-      todolist:[
-        {id:1, todo:'공부하기'},
-        {id:2, todo:'요리하기'},
-        {id:3, todo:'청소하기'}
-      ]
+      todolist:[]
     }
+  }
+  componentDidMount() {
+    this.fetchTodoList(); // 컴포넌트가 마운트되면 데이터베이스에서 할일 목록을 가져옴
+  }
+
+  fetchTodoList() {
+    axios
+        .get('http://localhost:4000/todolist') // 데이터베이스에서 데이터를 가져오는 GET 요청
+        .then(response => {
+          this.setState({todolist: response.data}); // 가져온 데이터로 상태를 업데이트
+        })
+        .catch(error => {
+          console.error('데이터 가져오기 실패:', error);
+        });
   }
   addTodoList=(id,todo)=>{
     alert('추가(App)')
