@@ -35,7 +35,7 @@ class Todo extends Component{
         const {edit} = this.state
         if(edit === false){
             return(
-                <div id='todo'>  
+                <div id='todo' key={this.props.id}>
                     <div>
                         할일:{this.props.todo}
                     </div>
@@ -48,7 +48,7 @@ class Todo extends Component{
     
         }else if(edit === true){
             return(
-                <div id='todo'>  
+                <div id='todo' key={this.props.id}>
                     <div>
                         할일:<input type='text' defaultValue={this.props.todo}
                         onChange={this.todoChange}/>
@@ -62,7 +62,7 @@ class Todo extends Component{
     
         }
         return(
-            <div id='todo'>  
+            <div id='todo' key={this.props.id}>
                 <div className=''>
                     할일:{this.props.todo}
                 </div>

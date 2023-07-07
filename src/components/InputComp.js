@@ -11,11 +11,12 @@ class InputComp extends Component{
     }
     addTodoList=()=>{
         alert('추가(InputComp)')
-        const {id} = this.props+1
+        // const {id} = this.props+1
+        const {id} = this.props.id+1
+        // alert('추가할 id ' + this.props+1)
+        alert('추가할 id ' + id)
         const{todo} = this.state
         this.props.addTodoList(id,todo)
-
-
     }
     todoChange=(e)=>{
         console.log(e.target.value)
